@@ -36,6 +36,7 @@ sonar-dev:
   stage: sonardev
   image: node:12.14.1-alpine3.11
   script:
+    - npm install -g curl
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
     - rm -rf $SONAR_SCANNER_HOME
@@ -53,6 +54,7 @@ sonar:
   stage: sonar
   image: node:12.14.1-alpine3.11
   script:
+    - npm install -g curl
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
     - rm -rf $SONAR_SCANNER_HOME
