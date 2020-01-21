@@ -1,13 +1,8 @@
-FROM node:12.14.1-alpine3.11
+# build
+FROM node:12.14.1-alpine3.11 as build-stage
 
 # set working directory
 WORKDIR /app
-
-# install yarn from npm
-RUN npm i -g yarn
-
-# install serve to launch built project
-RUN npm install -g serve
 
 # install and cache app dependencies
 COPY . .
@@ -16,5 +11,9 @@ RUN yarn install
 # build a production ready app
 RUN yarn run build
 
-# start app
-CMD ["serve", "-s", "build"]
+# deploy
+FROM ngix:1.17.7-alpine
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
+
