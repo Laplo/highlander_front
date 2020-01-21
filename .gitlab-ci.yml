@@ -21,7 +21,7 @@ cache:
 
 build:
   stage: build
-  image: node:latest
+  image: gcr.io/distroless/nodejs
   script: npm i && npm run build
 
 dockerbuild:
@@ -32,12 +32,10 @@ dockerbuild:
     - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
-  only:
-    - /master/
 
 sonar-dev:
   stage: sonardev
-  image: node:latest
+  image: gcr.io/distroless/nodejs
   script:
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -54,7 +52,7 @@ sonar-dev:
 
 sonar:
   stage: sonar
-  image: node:latest
+  image: gcr.io/distroless/nodejs
   script:
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
