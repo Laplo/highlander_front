@@ -34,36 +34,22 @@ dockerbuild:
 
 sonar-dev:
   stage: sonardev
-  image: node:12.14.1-alpine3.11
-  script:
-    - yum install curl
-    - export SONAR_SCANNER_VERSION=4.0.0.1744
-    - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-    - rm -rf $SONAR_SCANNER_HOME
-    - mkdir -p $SONAR_SCANNER_HOME
-    - curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-    - unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-    - rm $HOME/.sonar/sonar-scanner.zip
-    - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-    - export SONAR_SCANNER_OPTS="-server"
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN
+  image:
+    name: sonarsource/sonar-scanner-cli:4.2
+    entrypoint: [""]
+  variables:
+    branch: develop
+  script: sonar-scanner
   only:
     - /develop/
 
 sonar:
   stage: sonar
-  image: node:12.14.1-alpine3.11
-  script:
-    - yum install curl
-    - export SONAR_SCANNER_VERSION=4.0.0.1744
-    - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-    - rm -rf $SONAR_SCANNER_HOME
-    - mkdir -p $SONAR_SCANNER_HOME
-    - curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-    - unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-    - rm $HOME/.sonar/sonar-scanner.zip
-    - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-    - export SONAR_SCANNER_OPTS="-server"
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN
+  image:
+    name: sonarsource/sonar-scanner-cli:4.2
+    entrypoint: [""]
+  variables:
+    branch: master
+  script: sonar-scanner
   only:
     - /master/
