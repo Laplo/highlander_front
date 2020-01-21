@@ -21,9 +21,7 @@ cache:
 build:
   stage: build
   image: node:12.14.1-alpine3.11
-  script:
-    - npm i -g yarn
-    - yarn install && yarn run build
+  script: yarn install && yarn run build
 
 dockerbuild:
   stage: dockerbuild
