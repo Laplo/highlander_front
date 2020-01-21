@@ -21,7 +21,7 @@ cache:
 
 build:
   stage: build
-  image: gcr.io/distroless/nodejs
+  image: alpine
   script: npm i && npm run build
 
 dockerbuild:
@@ -35,7 +35,7 @@ dockerbuild:
 
 sonar-dev:
   stage: sonardev
-  image: gcr.io/distroless/nodejs
+  image: alpine
   script:
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -52,7 +52,7 @@ sonar-dev:
 
 sonar:
   stage: sonar
-  image: gcr.io/distroless/nodejs
+  image: alpine
   script:
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
