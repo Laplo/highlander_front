@@ -33,10 +33,11 @@ dockerbuild:
     - docker push $CI_REGISTRY_IMAGE:latest
   only:
     - /master/
+    - /develop/
 
 sonar-dev:
   stage: sonardev
-  image: node:latest
+  image: node:13.8.0-stretch
   script:
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
@@ -53,7 +54,7 @@ sonar-dev:
 
 sonar:
   stage: sonar
-  image: node:latest
+  image: node:13.8.0-stretch
   script:
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
