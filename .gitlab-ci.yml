@@ -13,6 +13,7 @@ stages:
   - dockerbuild
   - sonardev
   - sonar
+  - deploy
 
 cache:
   paths:
