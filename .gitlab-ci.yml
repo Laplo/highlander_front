@@ -34,6 +34,7 @@ dockerbuild:
   only:
     - /master/
     - /develop/
+    - /^release-.*/
 
 sonar-dev:
   stage: sonardev
