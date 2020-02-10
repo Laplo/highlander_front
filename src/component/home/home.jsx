@@ -6,7 +6,10 @@ import {Link} from "react-router-dom";
 export const Home = () => {
 
     const [listUser, setListUser] = useState([]);
-    const [caCompany, setCaCompany] = useState(0);
+    const [caCompany, setCaCompany] = useState({
+        excludingTax: 0,
+        includingTax: 0
+    });
 
     useEffect(() => {
         fetch(`${fetchBase}/users`)
@@ -43,9 +46,10 @@ export const Home = () => {
     );
 
     const caCompanyDisplay = (
-        <div>
-            Chiffre d'affaire d'Highlander HT: {caCompany.excludingTax}€ <br/>
-            Chiffre d'affaire d'Highlander TTC : {caCompany.includingTax}€
+        <div id={"Ca"}>
+            <span id={"HT"}>Chiffre d'affaire d'Highlander HT: {caCompany.excludingTax}€</span>
+            <br/>
+            <span id={"TTC"}>Chiffre d'affaire d'Highlander TTC : {caCompany.includingTax}€</span>
         </div>
     );
 
