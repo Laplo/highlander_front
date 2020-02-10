@@ -17,10 +17,12 @@
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
+    "cypress": "3.8.2",
     "git-precommit-checks": "3.0.0",
     "husky": "4.2.1",
     "precise-commits": "1.0.2",
-    "prettier": "1.19.1"
+    "prettier": "1.19.1",
+    "start-server-and-test": "1.10.7"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -76,9 +78,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "cypress": "^3.8.2",
-    "start-server-and-test": "^1.10.7"
   }
 }

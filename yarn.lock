@@ -3765,7 +3765,7 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
-cypress@^3.8.2:
+cypress@3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-3.8.2.tgz#58fa96e1e7dae712403b0f4e8af1efe35442ff7a"
   integrity sha512-aTs0u3+dfEuLe0Ct0FVO5jD1ULqxbuqWUZwzBm0rxdLgLxIAOI/A9f/WkgY5Cfy1TEXe8pKC6Wal0ZpnkdGRSw==
@@ -10776,7 +10776,7 @@ stack-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
   integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
 
-start-server-and-test@^1.10.7:
+start-server-and-test@1.10.7:
   version "1.10.7"
   resolved "https://registry.yarnpkg.com/start-server-and-test/-/start-server-and-test-1.10.7.tgz#8fe2a7b5a1056a45e9fa3496beca8848768a5cd0"
   integrity sha512-JEMVYJJSlGPb6w/XlEa0CVOWfAXFvzwKdXhePAJoTlzhSa7AUVntoWFxEh0GGMTMxpgxI7HCejDTdOSkc4aviw==
