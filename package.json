@@ -36,7 +36,7 @@
     "eject": "react-scripts eject",
     "changelog-init": "conventional-changelog -i CHANGELOG.md -s -r 0",
     "changelog": "conventional-changelog -i CHANGELOG.md -s",
-    "changelog-git": "npm run changelog && git add CHANGELOG.md && git commit -m 'docs(changelog): updated' && git push origin master"
+    "changelog-git": "yarn run changelog && git add CHANGELOG.md && git commit -m 'docs(changelog): updated' && git push origin master"
   },
   "commitlint": {
     "extends": [
