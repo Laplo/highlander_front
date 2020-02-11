@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router";
 import {fetchBase} from "../../utils/fetch";
 
-export const User = () => {
+export const User = ({match}) => {
     const [userInfo, setUserInfo] = useState({});
     const [purchases, setPurchases] = useState([]);
-    const {userId} = useParams();
+    const {userId} = match.params;
 
     useEffect(() => {
         fetch(`${fetchBase}/users/${userId}`)
@@ -14,6 +13,9 @@ export const User = () => {
                     .then(json => {
                         setUserInfo(json.user);
                     });
+            })
+            .catch(() => {
+                setUserInfo({});
             })
     }, [userId]);
 
@@ -28,16 +30,16 @@ export const User = () => {
     }, [userId]);
 
     const userInfoDisplay = (
-      <div>
-          Prénom : {userInfo.firstName}
-          Nom: {userInfo.lastName}
+      <div id={"user-info"}>
+          <span id={"first-name"}>Prénom : {userInfo.firstName}</span>&nbsp;
+          <span id={"last-name"}>Nom : {userInfo.lastName}</span>
       </div>
     );
 
     const purchasesDisplay = (
-        <div>
+        <div id={"purchases"}>
             {purchases.map((product, i) => (
-                <div key={`product-${i}`}>
+                <div key={`product-${i}`} class={"product"}>
                     {product.name} : {product.price}€ (HT)
                 </div>
             ))}
