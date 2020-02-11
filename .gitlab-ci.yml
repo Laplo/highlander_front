@@ -46,8 +46,9 @@ dockerbuild:
 
 sonar-dev:
   stage: sonardev
-  image: node:13.8.0-stretch
+  image: node:12.14.1-alpine3.11
   script:
+    - run apk --no-cache add curl
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
     - rm -rf $SONAR_SCANNER_HOME
@@ -57,14 +58,15 @@ sonar-dev:
     - rm $HOME/.sonar/sonar-scanner.zip
     - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
     - export SONAR_SCANNER_OPTS="-server"
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN
+    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.file.suffixes=.js,.jsx
   only:
     - /develop/
 
 sonar:
   stage: sonar
-  image: node:13.8.0-stretch
+  image: node:12.14.1-alpine3.11
   script:
+    - run apk --no-cache add curl
     - export SONAR_SCANNER_VERSION=4.0.0.1744
     - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
     - rm -rf $SONAR_SCANNER_HOME
