@@ -10,10 +10,12 @@ variables:
 
 stages:
   - build
+  - test
   - dockerbuild
   - sonardev
   - sonar
   - deploy
+  - end2end
 
 cache:
   paths:
@@ -23,6 +25,11 @@ build:
   stage: build
   image: node:12.14.1-alpine3.11
   script: yarn install && yarn run build
+
+test:
+  stage: test
+  image: node:12.14.1-alpine3.11
+  script: yarn run test
 
 dockerbuild:
   stage: dockerbuild
@@ -79,3 +86,10 @@ deploy:
     - kubectl set image deployment/highlanderfront $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace msprci-develop
   only:
     - develop
+
+end-2-end:
+  stage: end2end
+  image: node:12.14.1-alpine3.11
+  script: yarn run test:cypress
+  only:
+    - /^release-.*/
