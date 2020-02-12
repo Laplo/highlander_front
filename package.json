@@ -23,6 +23,7 @@
     "git-precommit-checks": "3.0.0",
     "husky": "4.2.1",
     "jest": "24.9.0",
+    "jest-sonar-reporter": "2.0.0",
     "precise-commits": "1.0.2",
     "prettier": "1.19.1",
     "start-server-and-test": "1.10.7"
@@ -30,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom --testResultsProcessor <pathToNodeModules/jestSonarReporter/index.js>",
     "test:cypress": "start-server-and-test start http://release.highlander.fail cypress",
     "cypress": "cypress run",
     "eject": "react-scripts eject",
@@ -42,6 +43,12 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "jestSonar": {
+    "sonar56x": true,
+    "reportPath": "testResults",
+    "reportFile": "sonar-report.xml",
+    "indent": 4
   },
   "husky": {
     "hooks": {
