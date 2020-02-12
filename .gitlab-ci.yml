@@ -21,6 +21,7 @@ stages:
 cache:
   paths:
     - node_modules/
+    - coverage/
 
 build:
   stage: build
