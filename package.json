@@ -27,7 +27,6 @@
     "git-precommit-checks": "3.0.0",
     "husky": "4.2.1",
     "jest": "24.9.0",
-    "jest-sonar-reporter": "^2.0.0",
     "precise-commits": "1.0.2",
     "prettier": "1.19.1",
     "start-server-and-test": "1.10.7"
@@ -45,9 +44,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "jest": {
-    "testResultsProcessor": "jest-sonar-reporter"
   },
   "husky": {
     "hooks": {
