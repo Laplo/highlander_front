@@ -56,7 +56,10 @@ sonar-dev:
     SONAR_HOST_URL: $SONAR_HOST_URL
     GIT_DEPTH: 0
   script:
-    - cd ./coverage && ls -la && cat clover.xml && cd ..
+    - cd ./coverage
+    - ls -la
+    - sed -i 's/xml version="1.0"/xml version="1"/g' INPUTFILE
+    - cd ..
     - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
 
 sonar:
