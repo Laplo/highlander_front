@@ -13,6 +13,7 @@ stages:
   - test
   - dockerbuild
   - sonardev
+  - sonarfix
   - sonar
   - deploy
   - end2end
