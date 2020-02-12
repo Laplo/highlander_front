@@ -1,3 +1,5 @@
+<a href="https://david-dm.org/Laplo/highlander_front" title="dependencies status"><img src="https://david-dm.org/Laplo/highlander_front/status.png"/></a>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
