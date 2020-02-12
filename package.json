@@ -44,11 +44,6 @@
       "@commitlint/config-conventional"
     ]
   },
-  "jestSonar": {
-    "reportPath": ".",
-    "reportFile": "clover.xml",
-    "indent": 4
-  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
