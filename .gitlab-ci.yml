@@ -78,7 +78,7 @@ deploy:
     - echo -n $KUBE_CONFIG | base64 -d > ./config
     - kubectl set image deployment/highlanderfront $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace msprci-develop
   only:
-    - develop
+    - master
 
 end-2-end:
   stage: end2end
