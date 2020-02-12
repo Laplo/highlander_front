@@ -46,7 +46,7 @@
   },
   "jestSonar": {
     "reportPath": ".",
-    "reportFile": "sonar-report.xml",
+    "reportFile": "clover.xml",
     "indent": 4
   },
   "husky": {
