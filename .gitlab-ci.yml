@@ -37,7 +37,7 @@ test:
 dockerbuild:
   stage: dockerbuild
   script:
-    - docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo $CI_REGISTRY_PASSWORD | docker login --username $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
