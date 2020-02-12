@@ -46,11 +46,6 @@
       "@commitlint/config-conventional"
     ]
   },
-  "jestSonar": {
-    "reportPath": ".",
-    "reportFile": "clover.xml",
-    "indent": 4
-  },
   "husky": {
     "hooks": {
       "pre-commit": "yarn run version"
