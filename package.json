@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.3.2",
+    "@testing-library/user-event": "7.1.2",
+    "auto-changelog": "^1.16.2",
     "bootstrap": "4.4.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
@@ -34,9 +38,7 @@
     "test:cypress": "start-server-and-test start http://release.highlander.fail cypress",
     "cypress": "cypress run",
     "eject": "react-scripts eject",
-    "changelog-init": "conventional-changelog -i CHANGELOG.md -s -r 0",
-    "changelog": "conventional-changelog -i CHANGELOG.md -s",
-    "changelog-git": "changelog && git add CHANGELOG.md && git commit -m 'docs(changelog): updated' && git push origin master"
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "commitlint": {
     "extends": [
@@ -45,8 +47,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "precise-commit"
+      "pre-commit": "yarn run version"
     }
   },
   "hooks": {
