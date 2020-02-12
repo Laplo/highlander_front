@@ -6,7 +6,7 @@ WORKDIR /app
 
 # install and cache app dependencies
 COPY . .
-RUN yarn install
+RUN yarn install --prod
 
 # build a production ready app
 RUN yarn run build

@@ -3,27 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.3.2",
     "@testing-library/user-event": "7.1.2",
+    "auto-changelog": "^1.16.2",
     "bootstrap": "4.4.1",
-    "git-precommit-checks": "^3.0.0",
-    "husky": "^4.0.10",
-    "precise-commits": "^1.0.2",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-router": "5.1.2",
     "react-router-dom": "5.1.2",
-    "react-scripts": "3.3.0",
+    "react-scripts": "3.3.1",
     "reactstrap": "8.4.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.3.2",
+    "@testing-library/user-event": "7.1.2",
+    "cypress": "3.8.2",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
+    "git-precommit-checks": "3.0.0",
+    "husky": "4.2.1",
+    "jest": "24.9.0",
+    "precise-commits": "1.0.2",
+    "prettier": "1.19.1",
+    "start-server-and-test": "1.10.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:cypress": "start-server-and-test start http://release.highlander.fail cypress",
+    "cypress": "cypress run",
+    "eject": "react-scripts eject",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "commitlint": {
     "extends": [
@@ -32,8 +47,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "precise-commit"
+      "pre-commit": "yarn run version"
     }
   },
   "hooks": {
@@ -55,7 +69,10 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "cy": true
+    }
   },
   "browserslist": {
     "production": [
