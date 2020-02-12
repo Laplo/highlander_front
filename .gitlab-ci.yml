@@ -63,6 +63,20 @@ sonar-dev:
     - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
     - export SONAR_SCANNER_OPTS="-server"
     - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.file.suffixes=.js,.jsx
+  only:
+    - /develop/
+
+sonarfix:
+  stage: sonarfix
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  variables:
+    SONAR_TOKEN: "4fafac9638980d590c747df9aa2db05a9af7d385"
+    SONAR_HOST_URL: "https://sonarcloud.io"
+    GIT_DEPTH: 0
+  script:
+    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.file.suffixes=.js,.jsx
 
 sonar:
   stage: sonar
