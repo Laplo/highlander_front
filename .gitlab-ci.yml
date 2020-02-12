@@ -57,7 +57,7 @@ sonar-dev:
     GIT_DEPTH: 0
   script:
     - cd ./coverage && ls -la && cd ..
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info -Dsonar.coverageReportPaths=./coverage/clover.xml
+    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info -Dsonar.coverageReportPaths=coverage/clover.xml
 
 sonar:
   stage: sonar
