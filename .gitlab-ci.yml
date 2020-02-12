@@ -30,9 +30,7 @@ build:
 test:
   stage: test
   image: node:12.14.1-alpine3.11
-  script:
-    - yarn test
-    - q
+  script: CI=true yarn test
 
 dockerbuild:
   stage: dockerbuild
