@@ -73,7 +73,7 @@ sonarfix:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
   script:
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.file.suffixes=.js,.jsx
+    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.testExecutionReportPaths=test-report.xml -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.file.suffixes=.js,.jsx
 
 sonar:
   stage: sonar
