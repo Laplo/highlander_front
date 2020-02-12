@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --reporters='xml'",
+    "test": "react-scripts test --coverage",
     "test:cypress": "start-server-and-test start http://release.highlander.fail cypress",
     "cypress": "cypress run",
     "eject": "react-scripts eject",
