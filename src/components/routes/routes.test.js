@@ -1,5 +1,5 @@
 import React from 'react';
-import Routes from "../routes/routes";
+import Routes from "./routes";
 import {Route} from "react-router";
 import {shallow} from "../../enzyme";
 
