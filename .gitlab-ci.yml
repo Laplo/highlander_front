@@ -60,7 +60,6 @@ sonar-dev:
   script:
     - cd ./coverage
     - ls -la
-    - sed -i 's/1.0/1/' ./clover.xml
     - cd ..
     - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
 
