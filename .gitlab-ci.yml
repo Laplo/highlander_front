@@ -28,8 +28,6 @@ build:
   stage: build
   image: node:12.14.1-alpine3.11
   script: yarn install && yarn run build
-  only:
-    - develop
 
 test:
   stage: test
@@ -57,11 +55,9 @@ sonar-dev:
     SONAR_TOKEN: $SONAR_TOKEN
     SONAR_HOST_URL: $SONAR_HOST_URL
     GIT_DEPTH: 0
-  script:
-    - cd coverage
-    - ls -la
-    - cd ..
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
+  script: sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
+  only:
+    - /develop/
 
 sonar:
   stage: sonar
