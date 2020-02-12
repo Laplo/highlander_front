@@ -26,15 +26,11 @@ build:
   stage: build
   image: node:12.14.1-alpine3.11
   script: yarn install && yarn run build
-  only:
-    - /develop/
 
 test:
   stage: test
   image: node:12.14.1-alpine3.11
   script: yarn run test
-  only:
-    - /develop/
 
 dockerbuild:
   stage: dockerbuild
@@ -51,24 +47,6 @@ dockerbuild:
 
 sonar-dev:
   stage: sonardev
-  image: node:12.14.1-alpine3.11
-  script:
-    - apk --no-cache add curl
-    - export SONAR_SCANNER_VERSION=4.0.0.1744
-    - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-    - rm -rf $SONAR_SCANNER_HOME
-    - mkdir -p $SONAR_SCANNER_HOME
-    - curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-    - unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-    - rm $HOME/.sonar/sonar-scanner.zip
-    - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-    - export SONAR_SCANNER_OPTS="-server"
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.file.suffixes=.js,.jsx
-  only:
-    - /develop/
-
-sonarfix:
-  stage: sonarfix
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
@@ -81,19 +59,15 @@ sonarfix:
 
 sonar:
   stage: sonar
-  image: node:12.14.1-alpine3.11
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  variables:
+    SONAR_TOKEN: $SONAR_TOKEN
+    SONAR_HOST_URL: $SONAR_HOST_URL
+    GIT_DEPTH: 0
   script:
-    - apk --no-cache add curl
-    - export SONAR_SCANNER_VERSION=4.0.0.1744
-    - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-    - rm -rf $SONAR_SCANNER_HOME
-    - mkdir -p $SONAR_SCANNER_HOME
-    - curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-    - unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-    - rm $HOME/.sonar/sonar-scanner.zip
-    - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-    - export SONAR_SCANNER_OPTS="-server"
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN -Dsonar.javascript.file.suffixes=.js,.jsx
+    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
   only:
     - /master/
 
