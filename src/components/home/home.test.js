@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, } from '../../enzyme';
-import Home from "../home/home";
+import Home from "./home";
 
 describe('Home', () => {
     it('it should have two child elements of CA', () => {
