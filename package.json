@@ -39,7 +39,8 @@
     "cypress": "cypress install && cypress run",
     "eject": "react-scripts eject",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "test:badges": "npm run test -- --watchAll=true && jest-coverage-badges"
+    "test:badges": "npm run test -- --watchAll=true && jest-coverage-badges",
+    "cy:verify": "cypress verify"
   },
   "commitlint": {
     "extends": [

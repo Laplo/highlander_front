@@ -98,6 +98,7 @@ end-2-end:
   stage: end2end
   image: cypress/base:10
   script:
+    - npm run cy:verify
     - npm run test:cypress
   only:
     - /^release-.*/
