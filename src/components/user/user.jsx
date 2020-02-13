@@ -20,7 +20,7 @@ export const User = ({match}) => {
     }, [userId]);
 
     useEffect(() => {
-        fetch(`${fetchBase}/purchases/${userId}`)
+        fetch(`${fetchBase}/purchases/user/${userId}`)
             .then(response => {
                 response.json()
                     .then(json => {
