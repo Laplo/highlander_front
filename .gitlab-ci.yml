@@ -63,7 +63,7 @@ deploy-release:
   image: hublo/kubectl:latest
   script:
     - echo -n $KUBE_CONFIG | base64 -d > ./config
-    - kubectl set image deployment/highlanderback $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace msprci-release
+    - kubectl set image deployment/highlanderfront $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace msprci-release
   only:
     - /^release-.*/
 
@@ -72,7 +72,7 @@ deploy:
   image: hublo/kubectl:latest
   script:
     - echo -n $KUBE_CONFIG | base64 -d > ./config
-    - kubectl set image deployment/highlanderback $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace $KUBE_NAMESPACE
+    - kubectl set image deployment/highlanderfront $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace $KUBE_NAMESPACE
   only:
     - develop
     - master
