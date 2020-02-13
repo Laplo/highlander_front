@@ -32,21 +32,21 @@ test:
 dockerbuild:
   extends: .template-docker-build
   variables:
-    API_URL: api.highlander.fail
+    API_URL: http://api.highlander.fail
   only:
     - /master/
 
 dockerbuild-develop:
   extends: .template-docker-build
   variables:
-    API_URL: api.develop.highlander.fail
+    API_URL: http://api.develop.highlander.fail
   only:
     - /develop/
 
 dockerbuild-release:
   extends: .template-docker-build
   variables:
-    API_URL: api.release.highlander.fail
+    API_URL: http://api.release.highlander.fail
   only:
     - /^release-.*/
 
