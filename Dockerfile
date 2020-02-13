@@ -1,7 +1,7 @@
 # build
 FROM node:12.14.1-alpine3.11 as build-stage
 ARG API_URL
-ENV REACT_APP_API_URL${API_URL}
+ENV REACT_APP_API_URL ${API_URL}
 ENV PORT 4000
 # set working directory
 WORKDIR /app
