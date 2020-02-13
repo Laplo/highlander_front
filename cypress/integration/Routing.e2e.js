@@ -6,7 +6,7 @@ describe('Routing E2E', () => {
             .then(firstName => {
                 userInfo.get('span#last-name').invoke('text')
                     .then(lastName => {
-                        cy.get('li.list-group-item').first().get('a').click();
+                        userInfo.click();
                         cy.get('div#user-info > span#first-name').should('have.text',`Prénom : ${firstName}`);
                         cy.get('div#user-info > span#last-name').should('have.text',`Nom : ${lastName}`);
                     });
