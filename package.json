@@ -48,7 +48,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run version"
+      "pre-commit": "npm run version && CI=true npm run test"
     }
   },
   "hooks": {
