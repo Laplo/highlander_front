@@ -2,7 +2,7 @@
 FROM node:12.14.1-alpine3.11 as build-stage
 ARG API_URL
 ENV REACT_APP_API_URL ${API_URL}
-ENV PORT 4000
+ENV PORT 4002
 # set working directory
 WORKDIR /app
 
@@ -16,6 +16,6 @@ RUN npm run build
 # deploy
 FROM nginx:1.17.7-alpine
 COPY --from=build-stage /app/build /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 4002
 CMD ["nginx", "-g", "daemon off;"]
 
