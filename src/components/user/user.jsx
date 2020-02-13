@@ -39,7 +39,7 @@ export const User = ({match}) => {
     const purchasesDisplay = (
         <div id={"purchases"}>
             {purchases.map((product, i) => (
-                <div key={`product-${i}`} class={"product"}>
+                <div key={`product-${i}`} className={"product"}>
                     {product.name} : {product.price}€ (HT)
                 </div>
             ))}
