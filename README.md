@@ -2,6 +2,7 @@
 ![Alt text](./coverage/badge-branches.svg)
 ![Alt text](./coverage/badge-lines.svg)
 ![Alt text](./coverage/badge-statements.svg)
+[![Coverage Status](https://coveralls.io/repos/github/Laplo/highlander_front/badge.svg?branch=master)](https://coveralls.io/github/Laplo/highlander_front?branch=master)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
