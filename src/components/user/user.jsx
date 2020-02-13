@@ -31,8 +31,8 @@ export const User = ({match}) => {
 
     const userInfoDisplay = (
       <div id={"user-info"}>
-          <span id={"first-name"}>Prénom : {userInfo.firstName !== undefined ? userInfo.firstName : null}</span>&nbsp;
-          <span id={"last-name"}>Nom : {userInfo.lastName !== undefined ? userInfo.lastName : null}</span>
+          <span id={"first-name"}>Prénom : {userInfo !== undefined ? userInfo.firstName : null}</span>&nbsp;
+          <span id={"last-name"}>Nom : {userInfo !== undefined ? userInfo.lastName : null}</span>
       </div>
     );
 
