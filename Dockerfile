@@ -16,6 +16,6 @@ RUN npm run build
 # deploy
 FROM nginx:1.17.7-alpine
 COPY --from=build-stage /app/build /usr/share/nginx/html
-EXPOSE 40
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
 
