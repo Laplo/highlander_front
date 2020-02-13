@@ -1,4 +1,6 @@
 <a href="https://david-dm.org/Laplo/highlander_front" title="dependencies status"><img src="https://david-dm.org/Laplo/highlander_front/status.png"/></a>
+![Alt text](./coverage/badge-branches.svg)
+![Alt text](./coverage/badge-lines.svg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
