@@ -21,8 +21,9 @@ yarn-error.log*
 
 .idea
 
-# dont push to git videos from cypress
+# dont push to git videos and screenshots from cypress
 cypress/videos
+cypress/screenshots
 
 # environnement variables
 .env

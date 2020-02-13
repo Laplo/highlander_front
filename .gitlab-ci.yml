@@ -100,5 +100,10 @@ end-2-end:
   script:
     - npm run cy:verify
     - npm run test:cypress
+  artifacts:
+    paths:
+      - cypress/videos
+      - cypress/screenshots
+    expire_in: 1 day
   only:
     - /^release-.*/

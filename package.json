@@ -19,7 +19,7 @@
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "9.4.0",
     "@testing-library/user-event": "8.1.0",
-    "cypress": "3.8.2",
+    "cypress": "4.0.1",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "git-precommit-checks": "3.0.0",
@@ -36,11 +36,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "test:cypress": "start-server-and-test start http://release.highlander.fail cypress",
-    "cypress": "cypress install && cypress run",
+    "cypress": "cypress run",
     "eject": "react-scripts eject",
     "version": "auto-changelog -p && git add CHANGELOG.md",
     "test:badges": "npm run test -- --watchAll=true && jest-coverage-badges",
-    "cy:verify": "cypress verify"
+    "cy:verify": "cypress install && cypress verify"
   },
   "commitlint": {
     "extends": [
