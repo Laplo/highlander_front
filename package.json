@@ -46,7 +46,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run version"
+      "pre-commit": "npm run version"
     }
   },
   "hooks": {

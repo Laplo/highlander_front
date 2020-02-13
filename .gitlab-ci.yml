@@ -23,12 +23,18 @@ cache:
 build:
   stage: build
   image: node:12.14.1-alpine3.11
-  script: yarn install && yarn run build
+  script: npm install && npm run build
+  only:
+    - /master/
+    - /develop/
 
 test:
   stage: test
   image: node:12.14.1-alpine3.11
-  script: CI=true yarn test
+  script: CI=true npm test
+  only:
+    - /master/
+    - /develop/
 
 dockerbuild:
   stage: dockerbuild
@@ -40,10 +46,6 @@ dockerbuild:
     - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
-  only:
-    - /master/
-    - /develop/
-    - /^release-.*/
 
 sonar-dev:
   stage: sonardev
@@ -84,6 +86,6 @@ deploy:
 end-2-end:
   stage: end2end
   image: node:12.14.1-alpine3.11
-  script: yarn run test:cypress
+  script: npm run test:cypress
   only:
     - /^release-.*/

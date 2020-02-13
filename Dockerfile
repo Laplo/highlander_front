@@ -6,10 +6,10 @@ WORKDIR /app
 
 # install and cache app dependencies
 COPY . .
-RUN yarn install --prod
+RUN npm install --prod
 
 # build a production ready app
-RUN yarn run build
+RUN npm run build
 
 # deploy
 FROM nginx:1.17.7-alpine
