@@ -11,7 +11,7 @@ export const User = ({match}) => {
             .then(response => {
                 response.json()
                     .then(json => {
-                        setUserInfo(json.user);
+                        setUserInfo(json);
                     });
             })
             .catch(() => {
@@ -24,6 +24,7 @@ export const User = ({match}) => {
             .then(response => {
                 response.json()
                     .then(json => {
+                        console.log(json);
                         setPurchases(json.purchases);
                     });
             })
@@ -38,9 +39,9 @@ export const User = ({match}) => {
 
     const purchasesDisplay = (
         <div id={"purchases"}>
-            {purchases.map((product, i) => (
+            {purchases.map((purchase, i) => (
                 <div key={`product-${i}`} className={"product"}>
-                    {product.name} : {product.price}€ (HT)
+                    {purchase.product.name} : {purchase.product.price}€ (HT)
                 </div>
             ))}
         </div>
