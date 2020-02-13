@@ -97,6 +97,8 @@ deploy:
 end-2-end:
   stage: end2end
   image: node:12.14.1-alpine3.11
-  script: npm run test:cypress
+  script:
+    - apt-get install libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+    - npm run test:cypress
   only:
     - /^release-.*/
