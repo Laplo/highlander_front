@@ -3,13 +3,12 @@ variables:
   DOCKER_HOST: tcp://docker:2376
   DOCKER_TLS_CERTDIR: "/certs"
   DOCKER_DRIVER: overlay
+  KUBE_NAMESPACE: "msprci-${CI_BUILD_REF_NAME}"
 
 stages:
   - build
   - test
   - dockerbuild
-  - sonardev
-  - sonarfix
   - sonar
   - deploy
   - end2end
@@ -24,17 +23,11 @@ build:
   stage: build
   image: node:12.14.1-alpine3.11
   script: npm install && npm run build
-  only:
-    - /master/
-    - /develop/
 
 test:
   stage: test
   image: node:12.14.1-alpine3.11
   script: CI=true npm test
-  only:
-    - /master/
-    - /develop/
 
 dockerbuild:
   stage: dockerbuild
@@ -46,19 +39,10 @@ dockerbuild:
     - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE:latest
-
-sonar-dev:
-  stage: sonardev
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: [""]
-  variables:
-    SONAR_TOKEN: $SONAR_TOKEN
-    SONAR_HOST_URL: $SONAR_HOST_URL
-    GIT_DEPTH: 0
-  script: sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=dev -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
   only:
+    - /master/
     - /develop/
+    - /^release-.*/
 
 sonar:
   stage: sonar
@@ -69,19 +53,29 @@ sonar:
     SONAR_TOKEN: $SONAR_TOKEN
     SONAR_HOST_URL: $SONAR_HOST_URL
     GIT_DEPTH: 0
-  script:
-    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
+  script: sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=${CI_BUILD_REF_NAME} -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
   only:
+    - /develop/
     - /master/
+
+deploy-release:
+  stage: deploy
+  image: hublo/kubectl:latest
+  script:
+    - echo -n $KUBE_CONFIG | base64 -d > ./config
+    - kubectl set image deployment/highlanderback $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace msprci-release
+  only:
+    - /^release-.*/
 
 deploy:
   stage: deploy
   image: hublo/kubectl:latest
   script:
     - echo -n $KUBE_CONFIG | base64 -d > ./config
-    - kubectl set image deployment/highlanderfront $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace msprci-develop
+    - kubectl set image deployment/highlanderback $CONTAINER_NAME=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --kubeconfig ./config --namespace $KUBE_NAMESPACE
   only:
     - develop
+    - master
 
 end-2-end:
   stage: end2end
