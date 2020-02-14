@@ -1,15 +1,19 @@
 describe('Routing E2E', () => {
     it('should redirect to the user page', () => {
         cy.visit('http://release.highlander.fail');
-        const userInfo = cy.get('li.list-group-item').first().get('a');
-        userInfo.get('span#first-name').invoke('text')
-            .then(firstName => {
-                userInfo.get('span#last-name').invoke('text')
-                    .then(lastName => {
-                        userInfo.click();
-                        cy.get('div#user-info > span#first-name').should('have.text',`Prénom : ${firstName}`);
-                        cy.get('div#user-info > span#last-name').should('have.text',`Nom : ${lastName}`);
-                    });
-            })
+        let firstName = null;
+        let lastName = null;
+        cy.get('ul>li.list-group-item')
+            .within(() => {
+                cy.get('span#first-name').first().then($firstNameText => firstName = $firstNameText.text());
+                cy.get('span#last-name').first().then($lastNameText => lastName = $lastNameText.text());
+                cy.get('a').first().click();
+            });
+        cy.get('div#user-info > span#first-name').should($span => {
+            expect($span).to.have.text('Prénom : ' + firstName)
+        });
+        cy.get('div#user-info > span#last-name').should($span => {
+            expect($span).to.have.text( 'Nom : ' + lastName)
+        });
     });
 });
