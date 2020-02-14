@@ -1,6 +1,6 @@
 {
   "name": "react-mspr-ci",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "auto-changelog": "1.16.2",
@@ -35,7 +35,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
-    "test:cypress": "start-server-and-test start http://release.highlander.fail cypress",
+    "test:cypress": "start-server-and-test http://release.highlander.fail cypress",
     "cypress": "cypress run",
     "eject": "react-scripts eject",
     "version": "auto-changelog -p && git add CHANGELOG.md",
