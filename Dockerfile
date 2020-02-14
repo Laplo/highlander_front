@@ -15,8 +15,13 @@ RUN npm run build
 
 # deploy
 FROM nginx:1.17.7-alpine
-COPY --from=build-stage /app/build /usr/share/nginx/html
+RUN ls -la
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
-EXPOSE 4002
+## Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
+## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
+COPY --from=build-stage /app/build /usr/share/nginx/html
+
+WORKDIR /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]
 
