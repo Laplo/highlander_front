@@ -1,29 +1,46 @@
 {
   "name": "react-mspr-ci",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@testing-library/jest-dom": "4.2.4",
-    "@testing-library/react": "9.3.2",
-    "@testing-library/user-event": "7.1.2",
+    "auto-changelog": "1.16.2",
     "bootstrap": "4.4.1",
-    "git-precommit-checks": "^3.0.0",
-    "husky": "^4.0.10",
-    "precise-commits": "^1.0.2",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-router": "5.1.2",
     "react-router-dom": "5.1.2",
-    "react-scripts": "3.3.0",
-    "reactstrap": "8.4.0"
+    "react-scripts": "3.3.1",
+    "reactstrap": "8.4.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
+    "@testing-library/dom": "6.12.2",
+    "@testing-library/jest-dom": "5.1.1",
+    "@testing-library/react": "9.4.0",
+    "@testing-library/user-event": "8.1.0",
+    "cypress": "4.0.1",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
+    "git-precommit-checks": "3.0.0",
+    "husky": "4.2.1",
+    "jest": "24.9.0",
+    "jest-coverage-badges": "1.1.2",
+    "jest-sonar-reporter": "2.0.0",
+    "precise-commits": "1.0.2",
+    "prettier": "1.19.1",
+    "start-server-and-test": "1.10.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --coverage",
+    "test:cypress": "start-server-and-test start http://release.highlander.fail cypress",
+    "cypress": "cypress run",
+    "eject": "react-scripts eject",
+    "version": "auto-changelog -p && git add CHANGELOG.md",
+    "test:badges": "npm run test -- --watchAll=true && jest-coverage-badges",
+    "cy:verify": "cypress install && cypress verify"
   },
   "commitlint": {
     "extends": [
@@ -32,8 +49,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "precise-commit"
+      "pre-commit": "npm run version && CI=true npm run test"
     }
   },
   "hooks": {
@@ -55,7 +71,17 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "cy": true
+    }
+  },
+  "jest": {
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ]
   },
   "browserslist": {
     "production": [
