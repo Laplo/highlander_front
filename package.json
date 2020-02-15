@@ -1,6 +1,6 @@
 {
   "name": "react-mspr-ci",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "dependencies": {
     "auto-changelog": "1.16.2",
