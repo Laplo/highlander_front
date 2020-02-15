@@ -35,7 +35,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "coveralls": "cat ./coverage/lcov.info | node node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "cat coverage/lcov.info | node node_modules/coveralls/bin/coveralls.js",
     "test:cypress": "start-server-and-test start http://release.highlander.fail cypress",
     "cypress": "cypress run",
     "eject": "react-scripts eject",
