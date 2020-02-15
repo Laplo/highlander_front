@@ -1,7 +1,4 @@
 <a href="https://david-dm.org/Laplo/highlander_front" title="dependencies status"><img src="https://david-dm.org/Laplo/highlander_front/status.png"/></a>
-![Alt text](./coverage/badge-branches.svg)
-![Alt text](./coverage/badge-lines.svg)
-![Alt text](./coverage/badge-statements.svg)
 [![Coverage Status](https://coveralls.io/repos/github/Laplo/highlander_front/badge.svg?branch=master)](https://coveralls.io/github/Laplo/highlander_front?branch=master)
 
 
