@@ -76,6 +76,13 @@
       "cy": true
     }
   },
+  "jest": {
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
