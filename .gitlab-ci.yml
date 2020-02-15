@@ -29,6 +29,13 @@ test:
   image: node:12.14.1-alpine3.11
   script: CI=true npm test
 
+test-master:
+  stage: test
+  image: node:12.14.1-alpine3.11
+  script: CI=true npm test
+  after_script:
+    - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
+
 dockerbuild:
   extends: .template-docker-build
   variables:
