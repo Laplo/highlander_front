@@ -23,7 +23,7 @@ build:
   image: node:12.14.1-alpine3.11
   script:
     - npm install
-    - npm run build -- --clearCache
+    - npm run build
 
 test:
   stage: test
