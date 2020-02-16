@@ -20,14 +20,14 @@ cache:
 
 build:
   stage: build
-  image: node:12.14.1-alpine3.11
+  image: node:12.16.0-alpine3.11
   script:
     - npm install
     - npm run build
 
 test:
   stage: test
-  image: node:12.14.1-alpine3.11
+  image: node:12.16.0-alpine3.11
   script: CI=true npm test -- --coverage
   after_script:
     - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
