@@ -28,8 +28,6 @@ test:
   stage: test
   image: node:12.14.1-alpine3.11
   script: CI=true npm test -- --coverage
-  after_script:
-    - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
 
 dockerbuild:
   extends: .template-docker-build
@@ -72,7 +70,7 @@ sonar:
     SONAR_TOKEN: $SONAR_TOKEN
     SONAR_HOST_URL: $SONAR_HOST_URL
     GIT_DEPTH: 0
-  script: sonar-scanner -X -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=${CI_BUILD_REF_NAME} -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
+  script: sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.branch.name=${CI_BUILD_REF_NAME} -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_LOGIN
   only:
     - /develop/
     - /master/
