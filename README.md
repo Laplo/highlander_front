@@ -1,8 +1,8 @@
 <a href="https://david-dm.org/Laplo/highlander_front" title="dependencies status"><img src="https://david-dm.org/Laplo/highlander_front/status.png"/></a>
 [![Coverage Status](https://coveralls.io/repos/github/Laplo/highlander_front/badge.svg?branch=master)](https://coveralls.io/github/Laplo/highlander_front?branch=master)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Lapli_highlander_front&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laplo_highlander_back)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Lapli_highlander_front&metric=bugs)](https://sonarcloud.io/dashboard?id=Laplo_highlander_back)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Lapli_highlander_front&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laplo_highlander_back)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Lapli_highlander_front&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laplo_highlander_front)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Lapli_highlander_front&metric=bugs)](https://sonarcloud.io/dashboard?id=Laplo_highlander_front)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Lapli_highlander_front&metric=alert_status)](https://sonarcloud.io/dashboard?id=Laplo_highlander_front)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
