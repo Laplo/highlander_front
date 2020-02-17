@@ -1,6 +1,6 @@
 {
   "name": "react-mspr-ci",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.4",
