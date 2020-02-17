@@ -22,6 +22,7 @@ build:
   stage: build
   image: node:12.16.0-alpine3.11
   script:
+    - rm -rf coverage
     - npm install
     - npm run build
 
