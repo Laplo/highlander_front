@@ -7,3 +7,11 @@ describe('App E2E', () => {
         })
     });
 });
+
+describe('Monkey test', () => {
+    it('successful loads', () => {
+        cy.visit('http://release.highlander.fail/');
+        cy.window().should('have.property', 'readGremlinsScript');
+        cy.window().should('have.property', 'unleashGremlins');
+    });
+});
