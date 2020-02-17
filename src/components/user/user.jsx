@@ -6,6 +6,7 @@ export const User = ({match}) => {
     const [purchases, setPurchases] = useState([]);
     const {userId} = match.params;
 
+    // oui
     useEffect(() => {
         fetch(`${fetchBase}/users/${userId}`)
             .then(response => {
